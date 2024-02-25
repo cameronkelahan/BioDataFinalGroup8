@@ -3,7 +3,7 @@
 
 *Angela Kralevska (2072021), Elena Stefanovska (2085310), Cameron Kelahan (2071947)*
 
-This is a repo for the final project for the Biological Data course. For ease, the repo can be either cloned/downloaded and run locally or implemented in google colab.
+This is a repo for the final project for the Biological Data course. For ease, the repo can be either cloned/downloaded and run locally or implemented in google colab. Please find the associated research paper in the root of this repo: "BioData_ProteinFunctionPrediction_Group8.pdf"
 
 The prediction software is made up of 6 different python notebooks:
  * data_processing.ipynb
