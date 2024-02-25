@@ -19,6 +19,8 @@ Our final version of the trained models are contained in the biological_data_pfp
 
 **The final submission.tsv file we are submitting for testing is found in the root of this repository.**
 
+Additionally, the Protein_labels_plots.ipynb notebook provides numerous plots that are found in the research paper.
+
 ## Executing the code to train from scratch
 
 ### Open the **data_processing.ipynb** notebook
