@@ -13,7 +13,7 @@ The prediction software is made up of 6 different python notebooks:
  * Kfold_CV _MLP_T5_domains_data.ipynb
  * Make_predictions.ipynb
 
-The data to be used by the software is found at [this link](https://drive.google.com/file/d/1UqCBSTil8c8tzZjh1-hqBPXKDDJA3TMJ/view?usp=sharing). Download and unzip the folder, then move it into this directory (BioDataFinalGroup8). This file will need to be accessed from this local location.
+The data to be used by the software is found at [this link](https://drive.google.com/drive/folders/196iOpk3-GAwI6yb57b3DYyDhxCn8t1Zo?usp=sharing). Download and unzip the folder, then move it into this directory (BioDataFinalGroup8). This file will need to be accessed from this local location.
 
 ## Executing the code
 
