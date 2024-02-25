@@ -13,9 +13,13 @@ The prediction software is made up of 6 different python notebooks:
  * Kfold_CV _MLP_T5_domains_data.ipynb
  * Make_predictions.ipynb
 
-The data to be used by the software is found at [this link](https://drive.google.com/drive/folders/196iOpk3-GAwI6yb57b3DYyDhxCn8t1Zo?usp=sharing). Download and unzip the folder, then move it into this directory (BioDataFinalGroup8). This file will need to be accessed from this local location.
+The data to be used by the software is found at [this link](https://drive.google.com/drive/folders/196iOpk3-GAwI6yb57b3DYyDhxCn8t1Zo?usp=sharing). Download (and unzip the folder if necessary), then move it into this directory (BioDataFinalGroup8). This file will need to be accessed from this local location.
 
-## Executing the code
+Our final version of the trained models are contained in the biological_data_pfp/models directory. Please access them here for testing.
+
+**The final submission.tsv file we are submitting for testing is found in the root of this repository.**
+
+## Executing the code to train from scratch
 
 ### Open the **data_processing.ipynb** notebook
 
@@ -50,22 +54,10 @@ Each file contains the same sections:
 
 **The Cellular_Component notebook has an additional functionality at the end.** Althought our computing resources were limited, the CC dataset was successfully run on the CAFA-evaluator. The bottom section of code executes this and gives an F1 score based on the evaluation.
 
-### 
+### Optional Kfold_CV _MLP_T5_domains_data.ipynb Notebook
 
-Output from the **contacts_classifier.py** script:
-- Example on how the output from our software looks like can be observed at the **2ghv.tsv file**.
-- The last three columns represent the predictions from the model.
-- The column named **model_predictions** contains the predictions made from the model in a list of 1s and 0s (where 1 means that the class is predicted, and 0 means that the class is not predicted), such that the classes are ordered in this way -> ["HBOND", "IONIC", "PICATION", "PIPISTACK", "SSBOND", "VDW"].
-- The column named **prediction_scores** represents the probabilities outputed from the model, i.e. the confidence scores for its predictions, and they are ordered in the same order as in the **model_predictions** column -> ["HBOND", "IONIC", "PICATION", "PIPISTACK", "SSBOND", "VDW"].
-- The last column **predicted_classes** contains list of the names of the predicted classes only.
+This notebook creates the models while utilizing KFold Cross Validation.
 
-Instructions for reproducing the model:
-- The model can be reproduced by executing the **Final_Model_Training.ipynb** notebook on Google Colab. Make sure to change the **path** variable before executing.
-- The dataset used for training can be obtained from this link (https://drive.google.com/file/d/1vuIvAs_rdM-hfeePw7gPhe2TWJKbXf9k/view?usp=sharing), it couldn't be attached on github because it is larger than 100MB. The dataset should be placed in the folder specified at the **path** variable.
-- The model will be saved as **final_model.h5** at the same folder specified at **path**.
+### Making predictions and creating the submission.tsv file
 
-Our report can be found in the **SB_Project_Report.pdf file**.
-
-All experiments and evaluation with the DNN model for multi-label classification are available in the **DNN_experiments.ipynb** notebook. In addition, this notebook contains the final code and plots regarding the EDA (Exploratory Data Analysis) steps as well as the code for calculating the new features and generating the final clean dataset with all features together. Moreover, the code and experiments with MLSMOTE oversampling are included.
-
-Experiments with OneVSRest approach for classification and obtaining feature importance by training Random Forest model are available in the **OneVSRest_and_Feature_importance_experiments.ipynb** notebook. 
+Open the final notebook, Make_predictions.ipynb. This notebook simply loads the three previosuly created models and records their predictions on the test set given in the biological_data_pfp/test directory. The submission.tsv file is output containing a list of protein/GO-term pairs and the proability that the specified GO-term is associated with the matched protein. No protein can have more than 1500 GO-terms associated with it across the 3 sub-ontologies. This file can be used for testing the performance of our software.
