@@ -19,14 +19,38 @@ The data to be used by the software is found at [this link](https://drive.google
 
 ### Open the **data_processing.ipynb** notebook
 
+This notebook handles the processing of the data into ready-to-use files. You **must specify the PATH variable** to be the location of the 'biilogical_data_pfp' folder that you previously unzipped and placed in this directory. After doing so, run the file to completion. At the end, you will have generated the following files:
 
+ * train.tsv: training set used by all models to train on
+ * validation.tsv: used by all models as a validation set while training
+ * train_embeddings.npy: numpy array version of the train_embeddings.h5 file values
+ * test_embeddings.npy: numpy array version of the test_embeddings.h5 file values
+ * train_ids.npy: numpy array version of the train_embeddings.h5 file protein IDs
+ * test_ids.npy: numpy array version of the test_embeddings.h5 file protein IDs
+ * domain_embeddings_pca.npy: numpy array containing the PCA of the InterPro domain values for the training set
+ * test_domain_embeddings_pca.npy: numpy array containing the PCA of the InterPro domain values for the test set
+ * domain_embeddings_pca_ids.npy: numpy array containing the protein IDs of the training set domain_embeddings_pca.npy values
+ * test_domain_embeddings_pca_ids.npy: numpy array containing the protein IDs of the test set test_domain_embeddings_pca.npy values
+ * train_set_ia.tsv: file containing the calculated information accreation (IA) values of the training set
 
-The **Predictor software** is contained in the **contacts_classifier.py** script. Directions for execution: 
-- It should be called with **four arguments** that represent the location of the input **pdb file**, **configuration file**, **output directory**, and **model**.
-- In this repo are given examples of pdb file (2ghv.cif), configuration file (configuration.json), and the **final model is also attached (final_model.f5)**.
-- In order to be able to execute the script please make sure to specify the **exact location of the dssp_file**, **rama_file** and **atchley_file** 
-in the **configuration.json** script.
-- Make sure the python libraries: BioPython, Tensorflow, Numpy and Pandas are installed before running the script. 
+### Open one of the MLP_T5_domains_data_* Notebooks
+
+All three of these notebooks (Biological_Process (BP), Molecular_Function (MF), and Cellular_Component (CC) are organized in the same way. Execution order does not matter.
+Again, you **must specify the PATH variable** to be the location of the 'biilogical_data_pfp' folder that you previously unzipped and placed in this directory for **each** of these 3 notebooks. After doing so, run the files to completion.
+
+Each file contains the same sections:
+ * Load and combine the data to make the training and validation datasets for the specific aspect (BP, MF, or CC)
+ * Plot the Most frequent GO terms for the specified aspect
+ * Create a matrix of go proteins and their go terms through one-hot encoding to act as the ground truth labels for the training (each protein is a row, each column a go term; if the protein is associated with a go term, that (row,column) will have a 1; if there is no association it will have a 0)
+ * Train the model; it runs for 50 epochs
+ * Save the model for future use and evaluation
+ * Perform some analysis of the model by calculating the Precision, Recall, and F1 Score of the training and validation sets
+ * Plot confusion matrices for the first and last 15 terms in both the training and validation sets
+ * Plot the ROC curves for the first and last 15 terms in both the training and validation sets
+
+**The Cellular_Component notebook has an additional functionality at the end.** Althought our computing resources were limited, the CC dataset was successfully run on the CAFA-evaluator. The bottom section of code executes this and gives an F1 score based on the evaluation.
+
+### 
 
 Output from the **contacts_classifier.py** script:
 - Example on how the output from our software looks like can be observed at the **2ghv.tsv file**.
